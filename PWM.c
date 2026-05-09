@@ -3,7 +3,6 @@
 #include"REG52.H"
 
 unsigned char t=0;
-unsigned int i=0;
 unsigned int motomode=0;
 
 

@@ -19,6 +19,7 @@ extern bit timer_start_flag;
 
 
 uchar Recive_table[15];
+uint i=0;
 
 
 
@@ -125,7 +126,8 @@ int main() {
     usartInit();
 	WIFI_Init();
     
-    timer_start_flag = 1; 
+    timer_start_flag = 1;
+    delay_ms(3000);  // 等待 TCP 透传链路稳定
 
     while(1) {
 
