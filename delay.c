@@ -7,12 +7,14 @@ typedef unsigned int uint;
 
 void delay_ms(uint ms)
 {
-	uchar i,j;
+	volatile uint i, j;
 	for(i=ms;i>0;i--)
-	for(j=120;j>0;j--);
+	for(j=460;j>0;j--);   // 11.0592MHz 晶振，每轮约1ms
 }
- 
+
 void delay_us(uchar us)
 {
-	while(us--);
+	volatile uchar k;
+	while(us--)
+	for(k=5;k>0;k--);     // 每轮约1us
 }
