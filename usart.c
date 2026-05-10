@@ -38,6 +38,8 @@ void WIFI_Init()//通过单片机配置AT指令
 	SENT_At("AT\r\n");//测试
 //	led1=0;//发送成功后亮灯
 	delay_ms(500);
+	SENT_At("AT+UART_DEF=9600,8,1,0,0\r\n");//设置ESP8266串口波特率为9600并保存
+	delay_ms(500);
 	SENT_At("AT+CWMODE=1\r\n");//设置模块 WIFI 模式为 STA 模式
 	led1=0;//发送成功后亮灯
 //	led2=0;//发送成功后亮灯

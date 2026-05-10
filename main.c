@@ -3,6 +3,7 @@
 #include "display.h"
 #include "delay.h"
 #include "usart.h"
+#include "key.h"
 #include"hardware.h"
 
 
@@ -111,8 +112,11 @@ void Uart() interrupt (4)
 }
 
 int main() {
+    uint heartbeat_ticks = 0;
+
     DispInit(); // 内部已包含定时器初始化
     pwmInit();  // 内部已包含电机初始化
+    KeyInit();
     delay_ms(100); // 等待系统稳定
     // 开机自检：显示 123456 
     // ... (你的自检逻辑) ...
@@ -130,21 +134,20 @@ int main() {
     delay_ms(3000);  // 等待 TCP 透传链路稳定
 
     while(1) {
+        KeyScanMotor();
 
-        //	SENT_At("AT+CIPSEND=0,5\r\n");//AT+CIPSTART="TCP","192.168.223.22",8080\r\n
-	led1=1;//发送成功后灭灯
-	led2=1;//发送成功后灭灯
-//	delay_ms(4000);
-	SENT_At("12345\n");//发5字节“12345”给手机
-	buzzer=0;
-	delay_ms(2000);
-	buzzer=1;
+        if(heartbeat_ticks >= 200) {
+            heartbeat_ticks = 0;
+            led1 = 1;
+            led2 = 1;
+            SENT_At("12345\n");//发5字节“12345”给手机
+            ES = 1;
+            buzzer = 0;
+            delay_ms(20);
+            buzzer = 1;
+        }
 
-	ES = 1;
-	
-   	while(key1!=0);
-	motomode++;
-	if(motomode>2) motomode=0;
-        
+        delay_ms(10);
+        heartbeat_ticks++;
     }
 }

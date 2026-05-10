@@ -1,13 +1,14 @@
 CompileFlags:
   Add:
+    - "-include"
+    - "fix.h"
     - "-I"
     - "D:/Keil_v5/C51/INC"
     - "-xc++"       # 强制 clangd 以 C++ 模式解析代码
     - "-D__clang__" # 确保触发我们写的修复逻辑
 Diagnostics:
   # 彻底关掉 clang-tidy 的静态检查（它是警告的主要来源）
-  ClangTidy:
-    Terminate: true 
+
 
   # 精准屏蔽特定的警告代码
   Suppress: [
