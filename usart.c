@@ -35,26 +35,26 @@ void SENT_At(const char *At_Comd)//指针指向At指令
 
 void WIFI_Init()//通过单片机配置AT指令
 {
-	SENT_At("AT\r\n");//测试
-//	led1=0;//发送成功后亮灯
-	delay_ms(500);
-	SENT_At("AT+UART_DEF=9600,8,1,0,0\r\n");//设置ESP8266串口波特率为9600并保存
-	delay_ms(500);
-	SENT_At("AT+CWMODE=1\r\n");//设置模块 WIFI 模式为 STA 模式
-	led1=0;//发送成功后亮灯
-//	led2=0;//发送成功后亮灯
-	delay_ms(500);
-	SENT_At("AT+RST\r\n");//重启模块生效
-//	led1=0;//发送成功后亮灯
-//	led2=0;//发送成功后亮灯
-	delay_ms(2000);
-	SENT_At("AT+CWJAP=\"SHYQ-4#-603\",\" \"\r\n");//连接 WIFI热点，路由名字：RSP8266，密码：12345123
- 	led1=1;//发送成功后灭灯
-	led2=0;//发送成功后亮灯
-//	led3=0;//发送成功后亮灯
-	delay_ms(2000);
-	delay_ms(2000);
-	SENT_At("AT+CIPSTART=\"TCP\",\"172.25.67.245\",8080\r\n");//建立 TCP 连接到” 192.168.xx.xxx”,8088
+// 	SENT_At("AT\r\n");//测试
+// //	led1=0;//发送成功后亮灯
+// 	delay_ms(500);
+// 	SENT_At("AT+UART_DEF=9600,8,1,0,0\r\n");//设置ESP8266串口波特率为9600并保存
+// 	delay_ms(500);
+// 	SENT_At("AT+CWMODE=1\r\n");//设置模块 WIFI 模式为 STA 模式
+// 	led1=0;//发送成功后亮灯
+// //	led2=0;//发送成功后亮灯
+// 	delay_ms(500);
+// 	SENT_At("AT+RST\r\n");//重启模块生效
+// //	led1=0;//发送成功后亮灯
+// //	led2=0;//发送成功后亮灯
+// 	delay_ms(2000);
+// 	SENT_At("AT+CWJAP=\"Xiaomi_CC47\",\"405405405\"\r\n");//连接 WIFI热点，路由名字：RSP8266，密码：12345123
+//  	led1=1;//发送成功后灭灯
+// 	led2=0;//发送成功后亮灯
+// //	led3=0;//发送成功后亮灯
+// 	delay_ms(2000);
+// 	delay_ms(2000);
+	SENT_At("AT+CIPSTART=\"TCP\",\"192.168.31.221\",8080\r\n");//建立 TCP 连接到” 192.168.xx.xxx”,8088
 //	led1=0;//发送成功后亮灯
 //	led2=1;//发送成功后灭灯
 //	led3=0;//发送成功后亮灯
