@@ -30,7 +30,7 @@ void DispInit() {
     ET0 = 1;
     EA = 1;
     TR0 = 1;
-    PS = 1;
+    // PS = 1;  // 串口中断高优先级会导致Timer0 PWM中断被阻塞
 
 
 	led1 = 1;

@@ -16,12 +16,13 @@ void usartInit(){
 
 	TR1 = 1;//启动计数器
 	EA = 1;//开总中断
-
+	ES = 1;//开串口中断
 }
 
 
 void SENT_At(const char *At_Comd)//指针指向At指令
 {
+	bit es_saved = ES;//保存当前ES状态
 	ES = 0;//关闭串口中断
 	while(*At_Comd!='\0')
 	{
@@ -31,6 +32,7 @@ void SENT_At(const char *At_Comd)//指针指向At指令
 		delay_us(5);
 		At_Comd++;//指向下一个字节
 	}
+	ES = es_saved;//恢复ES状态
 }
 
 void WIFI_Init()
